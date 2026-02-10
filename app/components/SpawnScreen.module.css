@@ -1,0 +1,143 @@
+.spawn {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: #0a0a0a;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  gap: 30px;
+  padding: 20px;
+}
+
+/* Частицы */
+.particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #ec4899;
+  animation: twinkle var(--dur, 6s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+  image-rendering: pixelated;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.2; transform: scale(0.7); }
+  50% { opacity: 0.6; transform: scale(1.2); }
+}
+
+/* Прогресс-бар */
+.progressContainer {
+  width: min(400px, 80vw);
+  height: 12px;
+  background: #222;
+  border: 2px solid #444;
+  image-rendering: pixelated;
+  overflow: hidden;
+}
+
+.progressBar {
+  height: 100%;
+  background: linear-gradient(90deg, #8b5cf6, #ec4899);
+  transition: width 0.5s steps(10);
+}
+
+/* Терминал */
+.terminal {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(9px, 2.5vw, 14px);
+  text-align: left;
+  width: min(500px, 85vw);
+}
+
+.line {
+  margin: 10px 0;
+  color: #4ade80;
+  animation: fadeInUp 0.4s ease forwards;
+  opacity: 0;
+  word-break: break-word;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.prefix {
+  color: #22d3ee;
+  margin-right: 8px;
+}
+
+/* Сердечко */
+.heartContainer {
+  animation: fadeIn 1s ease, pixelPulse 1.5s ease-in-out infinite;
+  margin: 20px 0;
+  padding: 10px;
+}
+
+.heartImg {
+  width: clamp(80px, 20vw, 140px);
+  height: auto;
+  image-rendering: pixelated;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.5); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pixelPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+}
+
+/* Кнопка входа */
+.enterButton {
+  font-family: 'Press Start 2P', monospace;
+  font-size: clamp(12px, 3vw, 18px);
+  color: #fff;
+  background: linear-gradient(180deg, #ec4899 0%, #db2777 100%);
+  border: 4px solid #831843;
+  padding: 16px 36px;
+  cursor: pointer;
+  animation: fadeInUp 0.6s ease, glowPulse 2s ease-in-out infinite;
+  transition: all 0.2s;
+  image-rendering: pixelated;
+  text-shadow: 2px 2px 0 #831843;
+  border-radius: 0;
+  position: relative;
+}
+
+.enterButton::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border: 2px solid #f9a8d4;
+  pointer-events: none;
+}
+
+.enterButton:hover {
+  transform: scale(1.05);
+  background: linear-gradient(180deg, #f9a8d4 0%, #ec4899 100%);
+}
+
+.enterButton:active {
+  transform: scale(0.98);
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 15px rgba(236, 72, 153, 0.3); }
+  50% { box-shadow: 0 0 30px rgba(236, 72, 153, 0.6), 0 0 50px rgba(236, 72, 153, 0.2); }
+}
+
+.btnIcon {
+  margin-right: 10px;
+}

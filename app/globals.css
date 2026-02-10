@@ -1,0 +1,203 @@
+/* ═══════════════════════════════════════════════
+   MINECRAFT VALENTINE — GLOBAL STYLES
+   ═══════════════════════════════════════════════ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Press Start 2P', monospace;
+  background: #1a1a2e;
+  color: #fff;
+  overflow-x: hidden;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: none;
+  image-rendering: pixelated;
+  will-change: scroll-position;
+}
+
+/* GPU acceleration for animations */
+[class*="animate"],
+[class*="particle"],
+[class*="heart"],
+[class*="firefly"],
+[class*="firework"],
+[class*="flame"],
+[class*="ember"] {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* ═══════════ PIXEL FONT HELPERS ═══════════ */
+.pixel-text {
+  font-family: 'Press Start 2P', monospace;
+  text-rendering: optimizeSpeed;
+}
+
+.silk-text {
+  font-family: 'Silkscreen', monospace;
+}
+
+/* ═══════════ SCROLLBAR ═══════════ */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #1a1a2e;
+}
+::-webkit-scrollbar-thumb {
+  background: #4a4e69;
+  border-radius: 0;
+}
+
+/* ═══════════ SECTION BASE ═══════════ */
+.section {
+  min-height: 100vh;
+  min-height: 100dvh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+}
+
+/* ═══════════ ANIMATIONS ═══════════ */
+@keyframes pixelPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.08); }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-15px); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+@keyframes fireFlicker {
+  0%, 100% { transform: scaleY(1) scaleX(1); opacity: 1; }
+  25% { transform: scaleY(1.1) scaleX(0.95); opacity: 0.9; }
+  50% { transform: scaleY(0.9) scaleX(1.05); opacity: 1; }
+  75% { transform: scaleY(1.05) scaleX(0.98); opacity: 0.85; }
+}
+
+@keyframes particleRise {
+  0% { transform: translateY(0) translateX(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-120px) translateX(var(--drift)) scale(0); opacity: 0; }
+}
+
+@keyframes pickaxeSwing {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-45deg); }
+}
+
+@keyframes blockBreak {
+  0% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(0); opacity: 0; }
+}
+
+@keyframes diamondGlow {
+  0%, 100% { filter: drop-shadow(0 0 10px #4ff8f8) drop-shadow(0 0 30px #4ff8f880); }
+  50% { filter: drop-shadow(0 0 20px #4ff8f8) drop-shadow(0 0 60px #4ff8f8aa); }
+}
+
+@keyframes flowerGrow {
+  0% { transform: scaleY(0); transform-origin: bottom; opacity: 0; }
+  60% { transform: scaleY(1.1); opacity: 1; }
+  100% { transform: scaleY(1); opacity: 1; }
+}
+
+@keyframes fireflyFloat {
+  0% { transform: translate(0, 0); opacity: 0.3; }
+  25% { transform: translate(20px, -30px); opacity: 1; }
+  50% { transform: translate(-10px, -50px); opacity: 0.6; }
+  75% { transform: translate(30px, -20px); opacity: 0.9; }
+  100% { transform: translate(0, 0); opacity: 0.3; }
+}
+
+@keyframes firework {
+  0% { transform: translateY(0) scale(0); opacity: 1; }
+  50% { transform: translateY(-200px) scale(1); opacity: 1; }
+  100% { transform: translateY(-200px) scale(1.5); opacity: 0; }
+}
+
+@keyframes starShoot {
+  0% { transform: translate(0, 0) scale(1); opacity: 1; }
+  100% { transform: translate(200px, 200px) scale(0); opacity: 0; }
+}
+
+@keyframes typewriter {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes heartFloat {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
+}
+
+@keyframes rotateSlow {
+  from { transform: rotateY(0deg); }
+  to { transform: rotateY(360deg); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(0, 255, 170, 0.3); }
+  50% { box-shadow: 0 0 40px rgba(0, 255, 170, 0.6), 0 0 60px rgba(0, 255, 170, 0.3); }
+}
+
+/* ═══════════ RESPONSIVE HELPERS ═══════════ */
+@media (max-width: 768px) {
+  .section {
+    padding: 15px;
+  }
+  
+  /* Reduce particle count on mobile */
+  [class*="particle"]:nth-child(n+10),
+  [class*="heart"]:nth-child(n+15),
+  [class*="firefly"]:nth-child(n+8),
+  [class*="firework"]:nth-child(n+20) {
+    display: none;
+  }
+}
