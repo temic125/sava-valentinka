@@ -8,9 +8,9 @@ function CozyHouse() {
   const ref = useRef()
 
   const paintings = useMemo(() => [
-    { text: 'Ты заставляешь этот мир быть лучше', img: '/world.png', color: '#ff6b6b' },
-    { text: 'Даже редкие алмазы не сравнятся', img: '/diamond.png', color: '#4ecdc4' },
-    { text: 'Я рад, что ты здесь', img: '/gold.png', color: '#ffe66d' },
+    { text: 'Хочу познакомиться поближе', img: '/world.png', color: '#ff6b6b' },
+    { text: 'Ты кажешься интересным человеком', img: '/diamond.png', color: '#4ecdc4' },
+    { text: 'Давай пообщаемся?', img: '/gold.png', color: '#ffe66d' },
   ], [])
 
   useEffect(() => {

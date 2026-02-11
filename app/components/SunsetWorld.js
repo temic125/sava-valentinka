@@ -8,8 +8,8 @@ function SunsetWorld() {
   const [text2, setText2] = useState('')
   const ref = useRef()
 
-  const fullText1 = useMemo(() => 'В каждом мире есть что-то редкое.', [])
-  const fullText2 = useMemo(() => 'В этом — ты.', [])
+  const fullText1 = useMemo(() => 'Иногда встречаешь интересных людей.', [])
+  const fullText2 = useMemo(() => 'Ты — одна из них.', [])
 
   useEffect(() => {
     const obs = new IntersectionObserver(

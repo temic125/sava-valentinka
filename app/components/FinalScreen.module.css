@@ -224,11 +224,7 @@
   border-color: #333;
   color: #aaa;
   text-shadow: 1px 1px 0 #333;
-  transition: transform 0.4s ease;
-}
-
-.noBtn:hover {
-  transform: translate(100px, -50px) !important;
+  transition: transform 0.3s ease;
 }
 
 /* Фейерверки */

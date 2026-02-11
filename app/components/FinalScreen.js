@@ -7,6 +7,7 @@ function FinalScreen() {
   const [answered, setAnswered] = useState(false)
   const [fireworks, setFireworks] = useState([])
   const [noButtonPos, setNoButtonPos] = useState({ x: 0, y: 0 })
+  const [noButtonClicks, setNoButtonClicks] = useState(0)
   const ref = useRef()
 
   useEffect(() => {
@@ -47,9 +48,17 @@ function FinalScreen() {
 
   const handleNo = () => {
     // Кнопка убегает
+    const newClicks = noButtonClicks + 1
+    setNoButtonClicks(newClicks)
+    
+    if (newClicks >= 5) {
+      // После 5 кликов кнопка исчезает
+      return
+    }
+    
     setNoButtonPos({
-      x: -100 + Math.random() * 200,
-      y: -100 + Math.random() * 200,
+      x: -150 + Math.random() * 300,
+      y: -150 + Math.random() * 300,
     })
   }
 
@@ -91,7 +100,7 @@ function FinalScreen() {
         </div>
         <div className={styles.sign}>
           <div className={styles.signBoard}>
-            <p className={styles.signText}>Will you be my Valentine?</p>
+            <p className={styles.signText}>Хочешь пообщаться?</p>
           </div>
           <div className={styles.signPost} />
         </div>
@@ -103,15 +112,18 @@ function FinalScreen() {
           <button className={styles.yesBtn} onClick={handleYes}>
             💚 Yes
           </button>
-          <button
-            className={styles.noBtn}
-            onClick={handleNo}
-            style={{
-              transform: `translate(${noButtonPos.x}px, ${noButtonPos.y}px)`,
-            }}
-          >
-            💔 No
-          </button>
+          {noButtonClicks < 5 && (
+            <button
+              className={styles.noBtn}
+              onClick={handleNo}
+              style={{
+                transform: `translate(${noButtonPos.x}px, ${noButtonPos.y}px)`,
+                transition: 'transform 0.3s ease',
+              }}
+            >
+              💔 No
+            </button>
+          )}
         </div>
       )}
 
@@ -155,8 +167,8 @@ function FinalScreen() {
 
           <div className={styles.worldSaved}>
             <div className={styles.savedBox}>
-              <p className={styles.savedText}>✦ World saved. ✦</p>
-              <p className={styles.savedSub}>❤️ Happy Valentine&apos;s Day, Amina ❤️</p>
+              <p className={styles.savedText}>✦ Отлично! ✦</p>
+              <p className={styles.savedSub}>🎮 Буду рад познакомиться, Amina 💬</p>
             </div>
           </div>
         </>
@@ -170,7 +182,7 @@ function FinalScreen() {
 
       {/* Подпись разработчика */}
       <div className={styles.credits}>
-        <p className={styles.creditsText}>Made with ❤️ by Ozganbay Temirlan 11M</p>
+        <p className={styles.creditsText}>Made by Temirlan</p>
       </div>
     </div>
   )

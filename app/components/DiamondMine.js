@@ -108,8 +108,8 @@ function DiamondMine() {
           </div>
 
           <div className={styles.diamondText}>
-            <p className={styles.dLine1}>Я мог бы найти что угодно.</p>
-            <p className={styles.dLine2}>Но нашёл тебя.</p>
+            <p className={styles.dLine1}>Среди множества людей</p>
+            <p className={styles.dLine2}>Заметил именно тебя.</p>
           </div>
         </div>
       )}

@@ -80,8 +80,8 @@ function FlowerGarden() {
 
       {/* Текст */}
       <div className={`${styles.gardenText} ${visible ? styles.textVisible : ''}`}>
-        <p className={styles.line1}>Этот мир стал лучше,</p>
-        <p className={styles.line2}>потому что в нём есть ты.</p>
+        <p className={styles.line1}>Было бы здорово</p>
+        <p className={styles.line2}>узнать тебя получше.</p>
       </div>
 
       {/* Трава */}
