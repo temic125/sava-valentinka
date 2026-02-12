@@ -100,6 +100,42 @@ body {
   100% { transform: scale(2.5); opacity: 0; }
 }
 
+/* ═══════════ MOBILE RESPONSIVE ═══════════ */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  /* Better touch targets */
+  button,
+  [role="button"],
+  .clickable {
+    min-width: 44px;
+    min-height: 44px;
+  }
+  
+  /* Disable hover effects on touch devices */
+  @media (hover: none) {
+    *:hover {
+      transform: none !important;
+    }
+  }
+  
+  /* Smooth scrolling */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Prevent text size adjustment */
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+}
+
 @keyframes heartbeat {
   0%, 100% { transform: scale(1); }
   15% { transform: scale(1.15); }

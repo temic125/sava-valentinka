@@ -23,7 +23,8 @@ const SYMBOLS = [
     phrase: 'Гаухар, ты моя нежность среди всего хаоса мира',
     color: '#FF6B9D',
     glowColor: 'rgba(255, 107, 157, 0.6)',
-    position: { top: '15%', left: '20%' }
+    position: { top: '15%', left: '20%' },
+    mobilePosition: { top: '12%', left: '15%' }
   },
   {
     id: 'shrek',
@@ -33,7 +34,8 @@ const SYMBOLS = [
     phrase: 'Ты моя Фиона — прекрасная в любом виде!',
     color: '#9AE66E',
     glowColor: 'rgba(154, 230, 110, 0.6)',
-    position: { top: '25%', left: '75%' }
+    position: { top: '25%', left: '75%' },
+    mobilePosition: { top: '20%', left: '70%' }
   },
   {
     id: 'coco',
@@ -43,7 +45,8 @@ const SYMBOLS = [
     phrase: 'Моя любовь к тебе никогда не угаснет, Гаухар',
     color: '#FFB347',
     glowColor: 'rgba(255, 179, 71, 0.6)',
-    position: { top: '60%', left: '15%' }
+    position: { top: '60%', left: '15%' },
+    mobilePosition: { top: '45%', left: '20%' }
   },
   {
     id: 'monsters',
@@ -53,7 +56,8 @@ const SYMBOLS = [
     phrase: 'Ты заставляешь мое сердце светиться ярче энергии смеха!',
     color: '#9B59B6',
     glowColor: 'rgba(155, 89, 182, 0.6)',
-    position: { top: '70%', left: '80%' }
+    position: { top: '70%', left: '80%' },
+    mobilePosition: { top: '55%', left: '65%' }
   },
   {
     id: 'toystory',
@@ -63,7 +67,8 @@ const SYMBOLS = [
     phrase: 'К бесконечности и дальше — только с тобой, моя звёздочка!',
     color: '#F7DC6F',
     glowColor: 'rgba(247, 220, 111, 0.6)',
-    position: { top: '40%', left: '50%' }
+    position: { top: '40%', left: '50%' },
+    mobilePosition: { top: '35%', left: '45%' }
   }
 ];
 

@@ -27,6 +27,13 @@
   padding: 60px 20px;
 }
 
+@media (max-width: 768px) {
+  .container {
+    width: 95vw;
+    padding: 40px 15px;
+  }
+}
+
 .closeButton {
   position: fixed;
   top: 20px;
@@ -46,6 +53,16 @@
 .closeButton:hover {
   background: rgba(255, 107, 157, 0.3);
   transform: scale(1.1) rotate(90deg);
+}
+
+@media (max-width: 768px) {
+  .closeButton {
+    width: 44px;
+    height: 44px;
+    font-size: 1.3rem;
+    top: 15px;
+    right: 15px;
+  }
 }
 
 .title {
@@ -76,6 +93,13 @@
   margin-bottom: 40px;
 }
 
+@media (max-width: 768px) {
+  .reasonsGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}
+
 .reasonCard {
   background: linear-gradient(145deg, 
     rgba(255, 255, 255, 0.1) 0%, 
@@ -88,6 +112,12 @@
   overflow: hidden;
   transition: all 0.4s ease;
   animation: cardSlideUp 0.6s ease both;
+}
+
+@media (max-width: 768px) {
+  .reasonCard {
+    padding: 20px 18px;
+  }
 }
 
 @keyframes cardSlideUp {
@@ -164,6 +194,39 @@
   font-size: 1.3rem;
   font-weight: 600;
   color: #FFB6C1;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: clamp(1.5rem, 4vw, 2rem);
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 35px;
+  }
+
+  .number {
+    font-size: 2.5rem;
+  }
+
+  .reasonTitle {
+    font-size: 1.3rem;
+  }
+
+  .reasonDescription {
+    font-size: 0.9rem;
+  }
+
+  .footer {
+    margin-top: 30px;
+    padding-top: 20px;
+  }
+
+  .footerText {
+    font-size: 1.1rem;
+  }
 }
 
 @media (max-width: 768px) {

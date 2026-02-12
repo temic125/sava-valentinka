@@ -5,6 +5,19 @@ import styles from './LoveSymbol.module.css'
 function LoveSymbol({ symbol, index, isHovered, isRevealed, onHover, onClick }) {
   const [particles, setParticles] = useState([])
   const [showPhrase, setShowPhrase] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
+
+  // Detect mobile screen size
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768)
+    }
+    
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   // Показать фразу после раскрытия
   useEffect(() => {
@@ -46,7 +59,7 @@ function LoveSymbol({ symbol, index, isHovered, isRevealed, onHover, onClick }) 
     <div
       className={`${styles.symbolWrapper} ${isHovered ? styles.hovered : ''} ${isRevealed ? styles.revealed : ''}`}
       style={{
-        ...symbol.position,
+        ...(isMobile && symbol.mobilePosition ? symbol.mobilePosition : symbol.position),
         '--symbol-color': symbol.color,
         '--glow-color': symbol.glowColor,
       }}

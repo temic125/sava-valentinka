@@ -537,6 +537,7 @@
   .hintOverlay {
     bottom: 80px;
     width: 90%;
+    max-width: calc(100vw - 30px);
   }
   
   .hintText {
@@ -560,6 +561,7 @@
 
   .pageButton {
     padding: 12px 16px;
+    min-width: 200px;
   }
 
   .buttonIcon {
@@ -568,5 +570,19 @@
 
   .buttonText {
     font-size: 0.75rem;
+  }
+  
+  .celebration {
+    width: 90%;
+    padding: 20px;
+  }
+  
+  .celebrationEmojis {
+    font-size: 2rem;
+  }
+  
+  .celebrationAnimation {
+    width: 120px;
+    height: 120px;
   }
 }
