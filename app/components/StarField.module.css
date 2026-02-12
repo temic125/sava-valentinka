@@ -98,35 +98,6 @@
   66% { transform: translate(-20px, 15px) scale(0.95); }
 }
 
-/* Mobile optimizations */
-@media (max-width: 768px) {
-  .nebula1,
-  .nebula2,
-  .nebula3 {
-    filter: blur(60px);
-    opacity: 0.1;
-  }
-  
-  .nebula1 {
-    width: 250px;
-    height: 250px;
-  }
-  
-  .nebula2 {
-    width: 200px;
-    height: 200px;
-  }
-  
-  .nebula3 {
-    width: 180px;
-    height: 180px;
-  }
-  
-  .shootingStar {
-    display: none;
-  }
-}
-
 /* Responsive */
 @media (max-width: 768px) {
   .nebula1,

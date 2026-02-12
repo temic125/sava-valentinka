@@ -98,21 +98,6 @@
   }
 }
 
-/* Mobile optimizations */
-@media (max-width: 768px) {
-  .orb {
-    filter: blur(40px);
-  }
-  
-  .particle {
-    display: none;
-  }
-  
-  .scanningLight {
-    opacity: 0.5;
-  }
-}
-
 /* Gradient waves */
 .wave1,
 .wave2,

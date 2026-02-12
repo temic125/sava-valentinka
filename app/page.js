@@ -23,8 +23,7 @@ const SYMBOLS = [
     phrase: 'Гаухар, ты моя нежность среди всего хаоса мира',
     color: '#FF6B9D',
     glowColor: 'rgba(255, 107, 157, 0.6)',
-    position: { top: '15%', left: '20%' },
-    mobilePosition: { top: '12%', left: '15%' }
+    position: { top: '15%', left: '20%' }
   },
   {
     id: 'shrek',
@@ -34,8 +33,7 @@ const SYMBOLS = [
     phrase: 'Ты моя Фиона — прекрасная в любом виде!',
     color: '#9AE66E',
     glowColor: 'rgba(154, 230, 110, 0.6)',
-    position: { top: '25%', left: '75%' },
-    mobilePosition: { top: '20%', left: '70%' }
+    position: { top: '25%', left: '75%' }
   },
   {
     id: 'coco',
@@ -45,8 +43,7 @@ const SYMBOLS = [
     phrase: 'Моя любовь к тебе никогда не угаснет, Гаухар',
     color: '#FFB347',
     glowColor: 'rgba(255, 179, 71, 0.6)',
-    position: { top: '60%', left: '15%' },
-    mobilePosition: { top: '45%', left: '20%' }
+    position: { top: '60%', left: '15%' }
   },
   {
     id: 'monsters',
@@ -56,8 +53,7 @@ const SYMBOLS = [
     phrase: 'Ты заставляешь мое сердце светиться ярче энергии смеха!',
     color: '#9B59B6',
     glowColor: 'rgba(155, 89, 182, 0.6)',
-    position: { top: '70%', left: '80%' },
-    mobilePosition: { top: '55%', left: '65%' }
+    position: { top: '70%', left: '80%' }
   },
   {
     id: 'toystory',
@@ -67,8 +63,7 @@ const SYMBOLS = [
     phrase: 'К бесконечности и дальше — только с тобой, моя звёздочка!',
     color: '#F7DC6F',
     glowColor: 'rgba(247, 220, 111, 0.6)',
-    position: { top: '40%', left: '50%' },
-    mobilePosition: { top: '35%', left: '45%' }
+    position: { top: '40%', left: '50%' }
   }
 ];
 
@@ -80,18 +75,15 @@ export default function LoveUniverse() {
   const [hoveredSymbol, setHoveredSymbol] = useState(null);
   const [revealedSymbols, setRevealedSymbols] = useState([]);
   const [allRevealed, setAllRevealed] = useState(false);
-  const [selectedSymbol, setSelectedSymbol] = useState(null);
   const [isMobile, setIsMobile] = useState(false);
+  const [currentSymbolIndex, setCurrentSymbolIndex] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
-  // Detect mobile screen size
+  // Определяем мобильный экран
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-    
+    const checkMobile = () => setIsMobile(window.innerWidth <= 768);
     checkMobile();
     window.addEventListener('resize', checkMobile);
-    
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
@@ -116,11 +108,16 @@ export default function LoveUniverse() {
 
   const handleSymbolClick = (symbolId) => {
     if (!revealedSymbols.includes(symbolId)) {
-      setRevealedSymbols([...revealedSymbols, symbolId]);
+      setRevealedSymbols(prev => [...prev, symbolId]);
     }
-    // На мобильных устройствах устанавливаем выбранный символ
-    if (isMobile) {
-      setSelectedSymbol(symbolId);
+    
+    // На мобильном — после клика переходим к следующему символу
+    if (isMobile && currentSymbolIndex < SYMBOLS.length - 1) {
+      setIsTransitioning(true);
+      setTimeout(() => {
+        setCurrentSymbolIndex(prev => prev + 1);
+        setIsTransitioning(false);
+      }, 2000); // Даём 2 секунды посмотреть фразу
     }
   };
 
@@ -163,19 +160,54 @@ export default function LoveUniverse() {
           </div>
         </header>
 
+        {/* Mobile: Static phrase display below header */}
+        {isMobile && revealedSymbols.includes(SYMBOLS[currentSymbolIndex]?.id) && (
+          <div className={styles.mobilePhrase} key={SYMBOLS[currentSymbolIndex].id}>
+            <div className={styles.mobilePhraseInner}>
+              <span className={styles.mobileMovieBadge}>{SYMBOLS[currentSymbolIndex].movie}</span>
+              <p className={styles.mobilePhraseText}>{SYMBOLS[currentSymbolIndex].phrase}</p>
+            </div>
+          </div>
+        )}
+
         {/* Floating Symbols */}
-        <div className={styles.symbolsContainer}>
-          {SYMBOLS.map((symbol, index) => (
-            <LoveSymbol
-              key={symbol.id}
-              symbol={symbol}
-              index={index}
-              isHovered={hoveredSymbol === symbol.id}
-              isRevealed={revealedSymbols.includes(symbol.id)}
-              onHover={setHoveredSymbol}
-              onClick={() => handleSymbolClick(symbol.id)}
-            />
-          ))}
+        <div className={`${styles.symbolsContainer} ${isMobile ? styles.symbolsContainerMobile : ''}`}>
+          {isMobile ? (
+            /* Мобильная версия — один символ по центру */
+            <div className={`${styles.mobileSymbolWrapper} ${isTransitioning ? styles.mobileTransitionOut : styles.mobileTransitionIn}`}>
+              <LoveSymbol
+                key={SYMBOLS[currentSymbolIndex].id}
+                symbol={SYMBOLS[currentSymbolIndex]}
+                index={currentSymbolIndex}
+                isHovered={hoveredSymbol === SYMBOLS[currentSymbolIndex].id}
+                isRevealed={revealedSymbols.includes(SYMBOLS[currentSymbolIndex].id)}
+                onHover={setHoveredSymbol}
+                onClick={() => handleSymbolClick(SYMBOLS[currentSymbolIndex].id)}
+                isMobile={true}
+              />
+              <div className={styles.mobileCounter}>
+                {currentSymbolIndex + 1} / {SYMBOLS.length}
+              </div>
+              {!revealedSymbols.includes(SYMBOLS[currentSymbolIndex].id) && (
+                <div className={styles.mobileTapHint}>
+                  Нажми, чтобы открыть
+                </div>
+              )}
+            </div>
+          ) : (
+            /* Десктоп — все символы разбросаны */
+            SYMBOLS.map((symbol, index) => (
+              <LoveSymbol
+                key={symbol.id}
+                symbol={symbol}
+                index={index}
+                isHovered={hoveredSymbol === symbol.id}
+                isRevealed={revealedSymbols.includes(symbol.id)}
+                onHover={setHoveredSymbol}
+                onClick={() => handleSymbolClick(symbol.id)}
+              />
+            ))
+          )}
         </div>
 
         {/* Hint when hovering */}
@@ -184,20 +216,6 @@ export default function LoveUniverse() {
             <p className={styles.hintText}>
               Нажми, чтобы открыть послание из «{SYMBOLS.find(s => s.id === hoveredSymbol)?.movie}»
             </p>
-          </div>
-        )}
-
-        {/* Mobile message display area */}
-        {isMobile && selectedSymbol && (
-          <div className={styles.mobileMessageArea}>
-            <div className={styles.mobileMessageCard}>
-              <span className={styles.mobileMovieBadge}>
-                {SYMBOLS.find(s => s.id === selectedSymbol)?.movie}
-              </span>
-              <p className={styles.mobilePhrase}>
-                {SYMBOLS.find(s => s.id === selectedSymbol)?.phrase}
-              </p>
-            </div>
           </div>
         )}
 

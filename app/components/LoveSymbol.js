@@ -2,22 +2,9 @@
 import { memo, useState, useEffect } from 'react'
 import styles from './LoveSymbol.module.css'
 
-function LoveSymbol({ symbol, index, isHovered, isRevealed, onHover, onClick }) {
+function LoveSymbol({ symbol, index, isHovered, isRevealed, onHover, onClick, isMobile }) {
   const [particles, setParticles] = useState([])
   const [showPhrase, setShowPhrase] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
-
-  // Detect mobile screen size
-  useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 768)
-    }
-    
-    checkMobile()
-    window.addEventListener('resize', checkMobile)
-    
-    return () => window.removeEventListener('resize', checkMobile)
-  }, [])
 
   // Показать фразу после раскрытия
   useEffect(() => {
@@ -30,7 +17,7 @@ function LoveSymbol({ symbol, index, isHovered, isRevealed, onHover, onClick }) 
   // Generate ambient particles for each symbol type
   useEffect(() => {
     const interval = setInterval(() => {
-      if (isHovered) {
+      if (isHovered || isMobile) {
         const newParticle = {
           id: Date.now() + Math.random(),
           x: Math.random() * 60 - 30,
@@ -41,7 +28,7 @@ function LoveSymbol({ symbol, index, isHovered, isRevealed, onHover, onClick }) 
     }, 300)
 
     return () => clearInterval(interval)
-  }, [isHovered])
+  }, [isHovered, isMobile])
 
   // Symbol-specific ambient animations
   const getAmbientClass = () => {
@@ -57,9 +44,9 @@ function LoveSymbol({ symbol, index, isHovered, isRevealed, onHover, onClick }) 
 
   return (
     <div
-      className={`${styles.symbolWrapper} ${isHovered ? styles.hovered : ''} ${isRevealed ? styles.revealed : ''}`}
+      className={`${styles.symbolWrapper} ${isMobile ? styles.mobileMode : ''} ${isHovered ? styles.hovered : ''} ${isRevealed ? styles.revealed : ''}`}
       style={{
-        ...(isMobile && symbol.mobilePosition ? symbol.mobilePosition : symbol.position),
+        ...(isMobile ? {} : symbol.position),
         '--symbol-color': symbol.color,
         '--glow-color': symbol.glowColor,
       }}
@@ -156,8 +143,8 @@ function LoveSymbol({ symbol, index, isHovered, isRevealed, onHover, onClick }) 
       {/* Ripple effect on hover */}
       {isHovered && !isRevealed && <div className={styles.ripple} />}
 
-      {/* Revealed phrase - hidden on mobile */}
-      {isRevealed && showPhrase && !isMobile && (
+      {/* Revealed phrase — only on desktop, mobile shows it externally */}
+      {!isMobile && isRevealed && showPhrase && (
         <div className={styles.phraseContainer}>
           <div className={styles.phraseBubble}>
             <span className={styles.movieBadge}>{symbol.movie}</span>
@@ -165,11 +152,6 @@ function LoveSymbol({ symbol, index, isHovered, isRevealed, onHover, onClick }) 
           </div>
           <div className={styles.checkmark}>✓</div>
         </div>
-      )}
-      
-      {/* Just checkmark on mobile */}
-      {isRevealed && isMobile && (
-        <div className={styles.mobileCheckmark}>✓</div>
       )}
     </div>
   )

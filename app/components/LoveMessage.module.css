@@ -98,8 +98,6 @@
     rgba(255, 200, 220, 0.08) 100%);
   backdrop-filter: blur(20px);
   border-radius: 30px;
-  max-width: 95vw;
-  margin: 0 auto;
   padding: 50px 60px;
   max-width: 550px;
   width: 90vw;
@@ -289,14 +287,6 @@
 
 .closeButton:active {
   transform: translateY(-1px) scale(0.98);
-}
-
-@media (max-width: 768px) {
-  .closeButton {
-    padding: 12px 25px;
-    font-size: 0.95rem;
-    margin-top: 25px;
-  }
 }
 
 /* Адаптивность */

@@ -288,11 +288,133 @@
   color: rgba(255, 255, 255, 0.5);
 }
 
+/* ═══════════ MOBILE PHRASE (static below header) ═══════════ */
+.mobilePhrase {
+  width: 90%;
+  max-width: 340px;
+  margin: 10px auto 0;
+  z-index: 50;
+  animation: phraseSlideIn 0.5s ease-out;
+}
+
+@keyframes phraseSlideIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.mobilePhraseInner {
+  background: linear-gradient(145deg, 
+    rgba(255, 255, 255, 0.12) 0%, 
+    rgba(255, 200, 220, 0.08) 100%);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  padding: 16px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.mobileMovieBadge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-family: 'Comfortaa', sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #FF6B9D;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 4px 12px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.mobilePhraseText {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 1.6;
+  margin: 0;
+}
+
 /* ═══════════ SYMBOLS CONTAINER ═══════════ */
 .symbolsContainer {
   position: absolute;
   inset: 0;
   z-index: 10;
+}
+
+.symbolsContainerMobile {
+  position: relative;
+  inset: unset;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  min-height: 50vh;
+  padding-top: 20px;
+}
+
+/* Mobile carousel wrapper */
+.mobileSymbolWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.mobileTransitionIn {
+  opacity: 1;
+  transform: scale(1);
+  animation: mobileSymbolAppear 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.mobileTransitionOut {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+@keyframes mobileSymbolAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0.5) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.mobileCounter {
+  font-family: 'Comfortaa', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.5);
+  margin-top: 20px;
+  letter-spacing: 2px;
+}
+
+.mobileTapHint {
+  font-family: 'Comfortaa', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 15px;
+  animation: tapHintPulse 2s ease-in-out infinite;
+  text-align: center;
+}
+
+@keyframes tapHintPulse {
+  0%, 100% { opacity: 0.4; transform: translateY(0); }
+  50% { opacity: 0.8; transform: translateY(-3px); }
 }
 
 /* ═══════════ HINT OVERLAY ═══════════ */
@@ -304,67 +426,6 @@
   z-index: 100;
   animation: fadeInUp 0.3s ease;
   pointer-events: none;
-}
-
-/* ═══════════ MOBILE MESSAGE AREA ═══════════ */
-.mobileMessageArea {
-  position: fixed;
-  bottom: 120px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  max-width: 500px;
-  z-index: 100;
-  animation: slideUpFade 0.4s ease;
-}
-
-@keyframes slideUpFade {
-  0% {
-    opacity: 0;
-    transform: translateX(-50%) translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0);
-  }
-}
-
-.mobileMessageCard {
-  background: linear-gradient(145deg, 
-    rgba(255, 255, 255, 0.15) 0%, 
-    rgba(255, 200, 220, 0.1) 100%);
-  backdrop-filter: blur(20px);
-  border-radius: 20px;
-  border: 2px solid rgba(255, 150, 180, 0.4);
-  padding: 20px;
-  box-shadow: 
-    0 8px 32px rgba(255, 107, 157, 0.3),
-    inset 0 0 20px rgba(255, 255, 255, 0.05);
-  animation: cardGlow 2s ease-in-out infinite alternate;
-}
-
-.mobileMovieBadge {
-  display: inline-block;
-  font-family: 'Comfortaa', sans-serif;
-  font-size: 0.75rem;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
-  background: linear-gradient(135deg, rgba(255, 107, 157, 0.4), rgba(200, 77, 255, 0.4));
-  padding: 6px 12px;
-  border-radius: 20px;
-  margin-bottom: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.mobilePhrase {
-  font-family: 'Comfortaa', sans-serif;
-  font-size: 1rem;
-  font-weight: 400;
-  color: rgba(255, 255, 255, 0.95);
-  line-height: 1.6;
-  margin: 0;
-  text-align: center;
 }
 
 @keyframes fadeInUp {
@@ -583,8 +644,16 @@
 
 /* ═══════════ RESPONSIVE ═══════════ */
 @media (max-width: 768px) {
+  .content {
+    min-height: 100dvh;
+  }
+
   .header {
     padding: 20px 15px;
+    position: relative;
+    background: linear-gradient(to bottom, 
+      rgba(10, 0, 20, 0.9) 0%, 
+      transparent 100%);
   }
   
   .heart {
@@ -596,9 +665,7 @@
   }
   
   .hintOverlay {
-    bottom: 180px;
-    width: 90%;
-    max-width: calc(100vw - 30px);
+    display: none;
   }
   
   .hintText {
@@ -606,20 +673,13 @@
     padding: 10px 18px;
   }
   
-  .mobileMessageArea {
-    bottom: 180px;
-  }
-  
-  .mobileMessageCard {
-    padding: 16px;
-  }
-  
-  .mobilePhrase {
-    font-size: 0.95rem;
-  }
-  
   .footer {
-    bottom: 15px;
+    position: relative;
+    bottom: unset;
+    left: unset;
+    transform: none;
+    text-align: center;
+    padding: 15px 0;
   }
   
   .footerText {
@@ -627,14 +687,21 @@
   }
 
   .pagesButtons {
-    bottom: 50px;
+    position: relative;
+    bottom: unset;
+    left: unset;
+    transform: none;
     flex-direction: column;
     gap: 10px;
+    padding: 15px 20px;
+    width: 100%;
+    align-items: center;
   }
 
   .pageButton {
-    padding: 12px 16px;
-    min-width: 200px;
+    padding: 12px 20px;
+    width: 100%;
+    max-width: 280px;
   }
 
   .buttonIcon {
@@ -642,20 +709,14 @@
   }
 
   .buttonText {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
   }
-  
+
   .celebration {
-    width: 90%;
-    padding: 20px;
-  }
-  
-  .celebrationEmojis {
-    font-size: 2rem;
-  }
-  
-  .celebrationAnimation {
-    width: 120px;
-    height: 120px;
+    position: relative;
+    top: unset;
+    left: unset;
+    transform: none;
+    margin: 20px auto;
   }
 }
