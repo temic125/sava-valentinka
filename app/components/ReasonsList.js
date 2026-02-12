@@ -62,7 +62,7 @@ export default function ReasonsList({ onClose }) {
       id: 10,
       number: '10',
       reason: 'Просто ты',
-      description: 'Всё в тебе идеально, моя Мария'
+      description: 'Всё в тебе идеально, моя Гаухар'
     }
   ];
 
