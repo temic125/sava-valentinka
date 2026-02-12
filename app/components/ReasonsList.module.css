@@ -1,0 +1,190 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 0, 30, 0.95);
+  backdrop-filter: blur(20px);
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-y: auto;
+  animation: fadeIn 0.4s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.container {
+  position: relative;
+  width: 90vw;
+  max-width: 1200px;
+  padding: 60px 20px;
+}
+
+.closeButton {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.closeButton:hover {
+  background: rgba(255, 107, 157, 0.3);
+  transform: scale(1.1) rotate(90deg);
+}
+
+.title {
+  font-family: 'Pacifico', cursive;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 10px;
+  background: linear-gradient(135deg, #FFB6C1, #FF69B4, #FF1493);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 50px;
+}
+
+.reasonsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.reasonCard {
+  background: linear-gradient(145deg, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    rgba(255, 200, 220, 0.05) 100%);
+  backdrop-filter: blur(15px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 30px 25px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  animation: cardSlideUp 0.6s ease both;
+}
+
+@keyframes cardSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reasonCard:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255, 107, 157, 0.5);
+  box-shadow: 0 10px 40px rgba(255, 107, 157, 0.3);
+}
+
+.reasonCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #FF6B9D, #C44DFF, #FFB300);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.reasonCard:hover::before {
+  opacity: 1;
+}
+
+.number {
+  font-family: 'Comfortaa', sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #FF6B9D, #FF1493);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  margin-bottom: 15px;
+  opacity: 0.7;
+}
+
+.reasonTitle {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #FFB6C1;
+  margin-bottom: 10px;
+}
+
+.reasonDescription {
+  font-family: 'Comfortaa', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.75);
+  line-height: 1.6;
+}
+
+.footer {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footerText {
+  font-family: 'Dancing Script', cursive;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #FFB6C1;
+}
+
+@media (max-width: 768px) {
+  .reasonsGrid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .reasonCard {
+    padding: 25px 20px;
+  }
+
+  .number {
+    font-size: 2.5rem;
+  }
+
+  .reasonTitle {
+    font-size: 1.2rem;
+  }
+
+  .reasonDescription {
+    font-size: 0.9rem;
+  }
+}

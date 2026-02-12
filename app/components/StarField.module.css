@@ -1,0 +1,110 @@
+.starField {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    #0a0a1a 0%,
+    #0d0d25 25%,
+    #12102a 50%,
+    #0d0d25 75%,
+    #0a0a1a 100%
+  );
+  z-index: 0;
+  overflow: hidden;
+}
+
+/* Individual stars */
+.star {
+  position: absolute;
+  background: #fff;
+  border-radius: 50%;
+  animation: twinkle ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Shooting stars */
+.shootingStar {
+  position: absolute;
+  left: -100px;
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #fff, transparent);
+  border-radius: 2px;
+  animation: shoot 3s ease-out infinite;
+  opacity: 0;
+}
+
+@keyframes shoot {
+  0% { 
+    left: -100px;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% { 
+    left: 110%;
+    opacity: 0;
+  }
+}
+
+/* Nebula clouds - soft colored glows */
+.nebula1,
+.nebula2,
+.nebula3 {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.15;
+  animation: nebulaDrift 30s ease-in-out infinite;
+}
+
+.nebula1 {
+  top: 10%;
+  left: 10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #ff6b9d, transparent 70%);
+}
+
+.nebula2 {
+  top: 50%;
+  right: 5%;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, #7c4dff, transparent 70%);
+  animation-delay: -10s;
+}
+
+.nebula3 {
+  bottom: 10%;
+  left: 30%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, #ffb300, transparent 70%);
+  animation-delay: -20s;
+}
+
+@keyframes nebulaDrift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(30px, -20px) scale(1.1); }
+  66% { transform: translate(-20px, 15px) scale(0.95); }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nebula1,
+  .nebula2,
+  .nebula3 {
+    width: 200px;
+    height: 200px;
+    filter: blur(60px);
+  }
+}

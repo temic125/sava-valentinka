@@ -1,0 +1,322 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(ellipse at center, 
+    rgba(20, 0, 50, 0.95) 0%, 
+    rgba(10, 0, 30, 0.98) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  overflow: hidden;
+}
+
+/* Летящие сердечки */
+.heartsContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.floatingHeart {
+  position: absolute;
+  bottom: -50px;
+  width: 20px;
+  height: 20px;
+  animation: floatUp linear infinite;
+  opacity: 0.8;
+}
+
+/* CSS Heart shape */
+.floatingHeart::before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(135deg, #FF6B9D, #FF1493);
+  border-radius: 50% 50% 0 0;
+  transform: rotate(-45deg);
+  transform-origin: 0 100%;
+  filter: drop-shadow(0 0 8px rgba(255, 100, 150, 0.6));
+}
+
+.floatingHeart::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background: linear-gradient(135deg, #FF6B9D, #FF1493);
+  border-radius: 50% 50% 0 0;
+  transform: rotate(45deg);
+  transform-origin: 100% 100%;
+  left: 10px;
+  filter: drop-shadow(0 0 8px rgba(255, 100, 150, 0.6));
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-110vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Контейнер послания */
+.messageContainer {
+  position: relative;
+  z-index: 10;
+  transform: scale(0.8);
+  opacity: 0;
+  transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.messageContainer.visible {
+  transform: scale(1);
+  opacity: 1;
+}
+
+/* Карточка */
+.messageCard {
+  background: linear-gradient(145deg, 
+    rgba(255, 255, 255, 0.12) 0%, 
+    rgba(255, 200, 220, 0.08) 100%);
+  backdrop-filter: blur(20px);
+  border-radius: 30px;
+  padding: 50px 60px;
+  max-width: 550px;
+  width: 90vw;
+  position: relative;
+  border: 2px solid rgba(255, 150, 180, 0.3);
+  box-shadow: 
+    0 0 60px rgba(255, 100, 150, 0.3),
+    0 0 100px rgba(200, 100, 255, 0.2),
+    inset 0 0 30px rgba(255, 255, 255, 0.05);
+  animation: cardGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes cardGlow {
+  0% {
+    box-shadow: 
+      0 0 60px rgba(255, 100, 150, 0.3),
+      0 0 100px rgba(200, 100, 255, 0.2),
+      inset 0 0 30px rgba(255, 255, 255, 0.05);
+  }
+  100% {
+    box-shadow: 
+      0 0 80px rgba(255, 100, 150, 0.5),
+      0 0 120px rgba(200, 100, 255, 0.3),
+      inset 0 0 50px rgba(255, 255, 255, 0.08);
+  }
+}
+
+/* Верхняя часть карточки */
+.cardTop {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.topHeart {
+  font-size: 3.5rem;
+  display: block;
+  animation: heartPulse 1.5s ease-in-out infinite;
+  filter: drop-shadow(0 0 20px rgba(255, 100, 150, 0.8));
+}
+
+@keyframes heartPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+/* Заголовок */
+.title {
+  font-family: 'Pacifico', cursive;
+  font-size: 2rem;
+  font-weight: 400;
+  text-align: center;
+  margin-bottom: 30px;
+  background: linear-gradient(135deg, #FF6B9D, #FFB3C6, #FF8FAB);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: none;
+  animation: titleShimmer 3s ease-in-out infinite;
+}
+
+@keyframes titleShimmer {
+  0%, 100% {
+    filter: brightness(1);
+  }
+  50% {
+    filter: brightness(1.3);
+  }
+}
+
+/* Содержимое письма */
+.letterContent {
+  color: rgba(255, 255, 255, 0.95);
+  font-family: 'Nunito', sans-serif;
+  line-height: 1.8;
+}
+
+.greeting {
+  font-size: 1.3rem;
+  font-family: 'Dancing Script', cursive;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #FFD700;
+  text-align: center;
+}
+
+.paragraph {
+  font-size: 1.05rem;
+  margin-bottom: 18px;
+  text-align: center;
+  font-family: 'Comfortaa', sans-serif;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.bigMessage {
+  font-size: 1.6rem;
+  font-family: 'Pacifico', cursive;
+  font-weight: 400;
+  text-align: center;
+  margin: 30px 0;
+  background: linear-gradient(135deg, #FF6B9D, #FF3366, #FF6B9D);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: loveGlow 2s ease-in-out infinite;
+}
+
+@keyframes loveGlow {
+  0%, 100% {
+    filter: brightness(1) drop-shadow(0 0 10px rgba(255, 100, 150, 0.5));
+  }
+  50% {
+    filter: brightness(1.3) drop-shadow(0 0 20px rgba(255, 100, 150, 0.8));
+  }
+}
+
+.signature {
+  font-size: 1.3rem;
+  font-family: 'Dancing Script', cursive;
+  font-weight: 600;
+  text-align: right;
+  margin-top: 25px;
+  font-style: italic;
+  color: #FFB6C1;
+}
+
+/* Декоративные элементы */
+.decorations {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.deco1, .deco2, .deco3, .deco4, .deco5 {
+  position: absolute;
+  font-size: 1.5rem;
+  opacity: 0.6;
+  animation: decoFloat 4s ease-in-out infinite;
+}
+
+.deco1 { top: 20%; left: -20px; animation-delay: 0s; }
+.deco2 { top: 40%; right: -20px; animation-delay: 0.5s; }
+.deco3 { top: 60%; left: -25px; animation-delay: 1s; }
+.deco4 { top: 80%; right: -20px; animation-delay: 1.5s; }
+.deco5 { bottom: 15%; left: -20px; animation-delay: 2s; }
+
+@keyframes decoFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(10deg);
+  }
+}
+
+/* Кнопка закрытия */
+.closeButton {
+  display: block;
+  width: 100%;
+  margin-top: 30px;
+  padding: 15px 30px;
+  font-family: 'Comfortaa', sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: white;
+  background: linear-gradient(135deg, #667eea, #764ba2, #f093fb);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+}
+
+.closeButton:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(102, 126, 234, 0.6);
+}
+
+.closeButton:active {
+  transform: translateY(-1px) scale(0.98);
+}
+
+/* Адаптивность */
+@media (max-width: 600px) {
+  .messageCard {
+    padding: 40px 30px;
+    border-radius: 25px;
+  }
+  
+  .title {
+    font-size: 1.8rem;
+  }
+  
+  .greeting {
+    font-size: 1.1rem;
+  }
+  
+  .paragraph {
+    font-size: 0.95rem;
+  }
+  
+  .bigMessage {
+    font-size: 1.3rem;
+  }
+  
+  .signature {
+    font-size: 1.1rem;
+  }
+  
+  .topHeart {
+    font-size: 2.5rem;
+  }
+}
