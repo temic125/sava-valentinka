@@ -156,8 +156,8 @@ function LoveSymbol({ symbol, index, isHovered, isRevealed, onHover, onClick }) 
       {/* Ripple effect on hover */}
       {isHovered && !isRevealed && <div className={styles.ripple} />}
 
-      {/* Revealed phrase */}
-      {isRevealed && showPhrase && (
+      {/* Revealed phrase - hidden on mobile */}
+      {isRevealed && showPhrase && !isMobile && (
         <div className={styles.phraseContainer}>
           <div className={styles.phraseBubble}>
             <span className={styles.movieBadge}>{symbol.movie}</span>
@@ -165,6 +165,11 @@ function LoveSymbol({ symbol, index, isHovered, isRevealed, onHover, onClick }) 
           </div>
           <div className={styles.checkmark}>✓</div>
         </div>
+      )}
+      
+      {/* Just checkmark on mobile */}
+      {isRevealed && isMobile && (
+        <div className={styles.mobileCheckmark}>✓</div>
       )}
     </div>
   )

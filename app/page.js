@@ -80,6 +80,20 @@ export default function LoveUniverse() {
   const [hoveredSymbol, setHoveredSymbol] = useState(null);
   const [revealedSymbols, setRevealedSymbols] = useState([]);
   const [allRevealed, setAllRevealed] = useState(false);
+  const [selectedSymbol, setSelectedSymbol] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Detect mobile screen size
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     // Интро анимация
@@ -103,6 +117,10 @@ export default function LoveUniverse() {
   const handleSymbolClick = (symbolId) => {
     if (!revealedSymbols.includes(symbolId)) {
       setRevealedSymbols([...revealedSymbols, symbolId]);
+    }
+    // На мобильных устройствах устанавливаем выбранный символ
+    if (isMobile) {
+      setSelectedSymbol(symbolId);
     }
   };
 
@@ -166,6 +184,20 @@ export default function LoveUniverse() {
             <p className={styles.hintText}>
               Нажми, чтобы открыть послание из «{SYMBOLS.find(s => s.id === hoveredSymbol)?.movie}»
             </p>
+          </div>
+        )}
+
+        {/* Mobile message display area */}
+        {isMobile && selectedSymbol && (
+          <div className={styles.mobileMessageArea}>
+            <div className={styles.mobileMessageCard}>
+              <span className={styles.mobileMovieBadge}>
+                {SYMBOLS.find(s => s.id === selectedSymbol)?.movie}
+              </span>
+              <p className={styles.mobilePhrase}>
+                {SYMBOLS.find(s => s.id === selectedSymbol)?.phrase}
+              </p>
+            </div>
           </div>
         )}
 

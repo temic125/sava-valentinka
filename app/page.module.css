@@ -306,6 +306,67 @@
   pointer-events: none;
 }
 
+/* ═══════════ MOBILE MESSAGE AREA ═══════════ */
+.mobileMessageArea {
+  position: fixed;
+  bottom: 120px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 500px;
+  z-index: 100;
+  animation: slideUpFade 0.4s ease;
+}
+
+@keyframes slideUpFade {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.mobileMessageCard {
+  background: linear-gradient(145deg, 
+    rgba(255, 255, 255, 0.15) 0%, 
+    rgba(255, 200, 220, 0.1) 100%);
+  backdrop-filter: blur(20px);
+  border-radius: 20px;
+  border: 2px solid rgba(255, 150, 180, 0.4);
+  padding: 20px;
+  box-shadow: 
+    0 8px 32px rgba(255, 107, 157, 0.3),
+    inset 0 0 20px rgba(255, 255, 255, 0.05);
+  animation: cardGlow 2s ease-in-out infinite alternate;
+}
+
+.mobileMovieBadge {
+  display: inline-block;
+  font-family: 'Comfortaa', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.9);
+  background: linear-gradient(135deg, rgba(255, 107, 157, 0.4), rgba(200, 77, 255, 0.4));
+  padding: 6px 12px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.mobilePhrase {
+  font-family: 'Comfortaa', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.95);
+  line-height: 1.6;
+  margin: 0;
+  text-align: center;
+}
+
 @keyframes fadeInUp {
   0% {
     opacity: 0;
@@ -535,7 +596,7 @@
   }
   
   .hintOverlay {
-    bottom: 80px;
+    bottom: 180px;
     width: 90%;
     max-width: calc(100vw - 30px);
   }
@@ -543,6 +604,18 @@
   .hintText {
     font-size: 0.85rem;
     padding: 10px 18px;
+  }
+  
+  .mobileMessageArea {
+    bottom: 180px;
+  }
+  
+  .mobileMessageCard {
+    padding: 16px;
+  }
+  
+  .mobilePhrase {
+    font-size: 0.95rem;
   }
   
   .footer {
