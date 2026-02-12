@@ -53,7 +53,7 @@ export default function LoveMessage({ onClose }) {
           
           {/* Заголовок */}
           <h1 className={styles.title}>
-            Моя любимая Мария
+            Моя любимая Гаухар
           </h1>
           
           {/* Послание */}
@@ -82,7 +82,7 @@ export default function LoveMessage({ onClose }) {
             </p>
             
             <p className={styles.signature}>
-              Твой Алекс
+              Твой Савва
             </p>
           </div>
           

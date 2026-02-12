@@ -20,7 +20,7 @@ const SYMBOLS = [
     emoji: '/images/ferdinand.png', // TODO: Add actual Ferdinand flower image
     label: 'Цветок',
     movie: 'Фердинанд',
-    phrase: 'Мария, ты моя нежность среди всего хаоса мира',
+    phrase: 'Гаухар, ты моя нежность среди всего хаоса мира',
     color: '#FF6B9D',
     glowColor: 'rgba(255, 107, 157, 0.6)',
     position: { top: '15%', left: '20%' }
@@ -40,7 +40,7 @@ const SYMBOLS = [
     emoji: '/images/coco.png', // TODO: Add actual Coco candle image
     label: 'Свеча',
     movie: 'Тайна Коко',
-    phrase: 'Моя любовь к тебе никогда не угаснет, Мария',
+    phrase: 'Моя любовь к тебе никогда не угаснет, Гаухар',
     color: '#FFB347',
     glowColor: 'rgba(255, 179, 71, 0.6)',
     position: { top: '60%', left: '15%' }
@@ -110,8 +110,8 @@ export default function LoveUniverse() {
       {showIntro && (
         <div className={styles.intro}>
           <div className={styles.introContent}>
-            <h1 className={styles.introTitle}>Мария</h1>
-            <p className={styles.introSubtitle}>Это послание от твоего Алекса...</p>
+            <h1 className={styles.introTitle}>Гаухар</h1>
+            <p className={styles.introSubtitle}>Это послание от твоего Саввы...</p>
             <div className={styles.loadingAnimation}>
               <div className={styles.heartbeat}></div>
             </div>
@@ -124,7 +124,7 @@ export default function LoveUniverse() {
         {/* Header */}
         <header className={styles.header}>
           <h1 className={styles.title}>
-            <span className={styles.titleText}>Моя любимая Мария</span>
+            <span className={styles.titleText}>Моя любимая Гаухар</span>
           </h1>
           <p className={styles.subtitle}>
             Нажми на каждый символ, чтобы открыть моё послание...
@@ -177,7 +177,7 @@ export default function LoveUniverse() {
         {/* Footer */}
         <footer className={styles.footer}>
           <p className={styles.footerText}>
-            С любовью от твоего <span className={styles.savvaName}>Алекса</span>
+            С любовью от твоего <span className={styles.savvaName}>Саввы</span>
           </p>
         </footer>
 
